@@ -1,1 +1,1 @@
-# Climb Philippines Guides
+# Climb Philippines Crag Guides

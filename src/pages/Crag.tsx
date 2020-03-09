@@ -1,7 +1,9 @@
 import { styled } from "linaria/react";
+import { cover } from "polished";
 import React from "react";
 import { Link } from "react-router-dom";
 import cragImage from "../images/monkey/IMG_2758.jpg";
+import { ReactComponent as RouteSvg } from "../paths/monkey.svg";
 
 const Container = styled.div``;
 
@@ -11,9 +13,19 @@ const Crag = styled.div`
   overflow-x: auto;
   overflow-y: hidden;
   object-fit: cover;
+  position: relative;
 
   img {
     height: 100%;
+  }
+`;
+
+const RoutePaths = styled(RouteSvg)`
+  ${cover()}
+  height: 100%;
+
+  path {
+    fill: #c3f;
   }
 `;
 
@@ -23,48 +35,51 @@ const RouteList = styled.div`
 
 const RouteLink = styled(Link)`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   color: inherit;
   text-decoration: none;
   line-height: 1;
   padding: 1em 2em;
 `;
-const RouteName = styled.strong``;
-const RouteGrade = styled.span``;
+const RouteNo = styled.span`
+  width: 1em;
+`;
+const RouteName = styled.strong`
+  flex: 1;
+`;
+const RouteGrade = styled.span`
+  width: 2em;
+`;
+
+const routes = [
+  {
+    id: "the-gift",
+    name: "The Gift",
+    grade: "7a"
+  },
+  {
+    id: "remember-me",
+    name: "Remember Me",
+    grade: "6b+"
+  },
+]
 
 export default function Home() {
   return (
     <Container>
       <Crag>
         <img src={cragImage} alt="Monkey Wall" />
+        <RoutePaths />
       </Crag>
       <RouteList>
-      <RouteLink to="/route/">
-        <RouteName>3 Monkeys and the Sun</RouteName>
-        <RouteGrade>?</RouteGrade>
-      </RouteLink>
-      <RouteLink to="/route/">
-        <RouteName>Handlanger</RouteName>
-        <RouteGrade>?</RouteGrade>
-      </RouteLink>
-      <RouteLink to="/route/">
-        <RouteName>I Got You Babe</RouteName>
-        <RouteGrade>6c</RouteGrade>
-      </RouteLink>
-      <RouteLink to="/route/">
-        <RouteName>The Gift</RouteName>
-        <RouteGrade>7a</RouteGrade>
-      </RouteLink>
-      <RouteLink to="/route/">
-        <RouteName>Seven Nation Army</RouteName>
-        <RouteGrade>6a</RouteGrade>
-      </RouteLink>
-      <RouteLink to="/route/">
-        <RouteName>Knockin’ on Heaven’s Door</RouteName>
-        <RouteGrade>5b</RouteGrade>
-      </RouteLink>
-</RouteList>
+        {routes.map((route, i) => (
+          <RouteLink to={`/route/${route.id}`} key={i}>
+            <RouteNo>{i + 1}</RouteNo>
+            <RouteName>{route.name}</RouteName>
+            <RouteGrade>{route.grade}</RouteGrade>
+          </RouteLink>
+        ))}
+      </RouteList>
     </Container>
   );
 }

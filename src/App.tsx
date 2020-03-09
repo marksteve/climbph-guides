@@ -15,6 +15,8 @@ css`
     :root {
       --sans-serif: "Inter", sans-serif;
 
+      --size-n2: ${modularScale(-2)};
+      --size-n1: ${modularScale(-1)};
       --size-0: ${modularScale(0)};
       --size-1: ${modularScale(1)};
       --size-2: ${modularScale(2)};

@@ -9,6 +9,12 @@ const Container = styled.div`
 const Title = styled.h1`
   line-height: 1;
   padding: 1rem 2rem;
+
+  small {
+    display: block;
+    text-transform: uppercase;
+    font-size: var(--size-n2);
+  }
 `;
 
 const Area = styled.h2`
@@ -27,7 +33,7 @@ const CragLink = styled(Link)`
 export default function Home() {
   return (
     <Container>
-      <Title>Crag Guide</Title>
+      <Title><small>Climb Philippines</small>Crag Guides</Title>
       <Area>Wawa</Area>
       <CragLink to="/crag/uling">Uling</CragLink>
       <CragLink to="/crag/monkey">Monkey</CragLink>
